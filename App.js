@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, View, ScrollView, StyleSheet, Text, Image, ImageBackground } from "react-native"; //view, scrollview, stylesheet 쓸거임
 import Constants from 'expo-constants';
 
+
 const App = () => {
+  
+  // initialize state and call setState to change
+  const flexDirections = ['row', 'row-reverse', 'column', 'column-reverse'];
+  // flexDirection 배치방향 (row는 가로로 column은 세로로, reverse는 거꾸로)
+
+  const [flexDirection, setFlexDirection] = useState(0);          // state 연결
+	// const [변경할 변수 이름, 변경하는 함수 이름] =useState(기본값);
+
+  const Square = () => {
+    const sqStyle = {
+      width : 50,
+      height : 50,
+      backgroundColor : randomHexColor()
+    };
+    return <View style={sqStyle} />;
+  }
+
+  const [squares, setSquares] = useState([Square(), Square(), Square()]);
+
+
+
   return (<>
     <View style={{paddingTop:Constants.statusBarHeight}}></View>
-    <View style={[styles.container, styles.playingSpace]}>  
-
+    <View style={[styles.container, styles.playingSpace]}>
+      {squares.map(elem => elem)}  
     </View>
 
     <ScrollView style={[styles.container]}>
@@ -61,12 +83,12 @@ const styles = StyleSheet.create({  //여기에 스타일 만들고 위에 view�
     height:'50%' //높이 반반으로
   },
   playingSpace:{
-    backgroundColor: 'lightyellow',
+    backgroundColor: 'white',
     borderColor: 'blue',
     borderWidth: 3
   },
   controlSpace: {
-    backgroundColor: '#A5A5A5',
+    backgroundColor: '#F5F5F5',
     flexDirection: 'row', 
     flexWrap: 'wrap'
   },
@@ -75,5 +97,11 @@ const styles = StyleSheet.create({  //여기에 스타일 만들고 위에 view�
     padding: 10
   }
 });
+
+const randomHexColor = () => {
+  return '#000000'.replace(/0/g, () => {
+    return (~~(Math.random() * 16)).toString(16);     // 소수점 버림, 16진수로 자름
+  })
+}
 
 export default App;
