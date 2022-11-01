@@ -65,12 +65,12 @@ const App = () => {
         <View style={[styles.buttonView]}>
           <Button 
           title="ADD SQURE"
-          onPress={() => console.log("ADD SQURE")}/>
+          onPress={() => setSquares([...squares, Square()])}/>
         </View>
         <View style={[styles.buttonView]}>
-          <Button 
-          title="DELETE SQUARE"
-          onPress={() => console.log("DELETE SQUARE")}/>
+        <Button 
+          title="DELETE SQUARE" 
+            onPress={() => setSquares(squares.filter((v, i) => i != squares.length-1))}/>
         </View>
       </View>
     </ScrollView>
