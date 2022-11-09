@@ -6,11 +6,45 @@ import Constants from 'expo-constants';
 const App = () => {
   
   // initialize state and call setState to change
-  const flexDirections = ['row', 'row-reverse', 'column', 'column-reverse'];
+  const flexDirectionsArray = ['row', 'row-reverse', 'column', 'column-reverse'];
   // flexDirection 배치방향 (row는 가로로 column은 세로로, reverse는 거꾸로)
+  const justifyContents = [
+    'flex-start',
+    'flex-end',
+    'center',
+    'space-between',
+    'space-around',
+    'space-evenly',
+  ];
+  const alignItems = ['flex-start', 'flex-end', 'center', 'stretch', 'baseline'];
+  const wraps = ['nowrap', 'wrap', 'wrap-reverse'];
+  const directions = ['inherit', 'ltr', 'rtl'];
 
-  const [flexDirection, setFlexDirection] = useState(0);          // state 연결
-	// const [변경할 변수 이름, 변경하는 함수 이름] =useState(기본값);
+  // const [변경할 변수 이름, 변경하는 함수 이름] =useState(기본값);
+  const [flexDirectionIndex, setFlexDirection] = useState(0);          // state 연결
+  const [justifyContentIndex, setJustifyContent] = useState(0);
+  const [alignItemIndex, setAlignItem] = useState(0);
+  const [wrapIndex, setWrap] = useState(0);
+  const [directionIndex, setDirection] = useState(0);
+
+  const hookedStyles = {    // 훅스타일 정의                      
+    flexDirection: flexDirectionsArray[flexDirectionIndex],  // 원래는 row, column 등 들어가는데 이렇게 쓰면 바꿀 수 있음
+    justifyContent: justifyContents[justifyContentIndex], 
+    alignItems: alignItems[alignItemIndex],
+    flexWrap: wraps[wrapIndex],
+    direction: directions[directionIndex]
+  }  
+  
+  const changeSetting = (value, options, setterfunction) => {  // 함수로 세팅값들 정의하고 밑에서 호출
+    var targetValue = 0;
+    if (value == options.length - 1) {
+      targetValue = 0;    
+    } else {
+      targetValue = value + 1;
+    }
+    setterfunction(targetValue);
+    console.log(options[targetValue]);
+  };
 
   const Square = () => {
     const sqStyle = {
@@ -24,10 +58,10 @@ const App = () => {
   const [squares, setSquares] = useState([Square(), Square(), Square()]);
 
 
-
-  return (<>
-    <View style={{paddingTop:Constants.statusBarHeight}}></View>
-    <View style={[styles.container, styles.playingSpace]}>
+  // view에 훅스타일 추가
+  return (<> 
+    <View style={{paddingTop:Constants.statusBarHeight}}></View>  
+    <View style={[styles.container, styles.playingSpace, hookedStyles]}>  
       {squares.map(elem => elem)}  
     </View>
 
@@ -36,31 +70,31 @@ const App = () => {
         <View style={[styles.buttonView]}>
           <Button 
             title="CHANGE FLEX DIRECTION"
-            onPress={() => console.log("CHANGE FLEX DIRECTION")}
+            onPress={() => changeSetting(flexDirectionIndex, flexDirectionsArray, setFlexDirection)}
           />
         </View >
         <View style={[styles.buttonView]}>
           <Button 
             title="CHANGE JUSTIFY CONTENT"
-            onPress={() => console.log("CHANGE JUSTIFY CONTENT")}
+            onPress={() => changeSetting(justifyContentIndex, justifyContents, setJustifyContent)}
           />
         </View>
         <View style={[styles.buttonView]}>
           <Button 
             title="CHANGE ALIGN ITEMS"
-            onPress={() => console.log("CHANGE ALIGN ITEMS")}
+            onPress={() => changeSetting(alignItemIndex, alignItems, setAlignItem)}
           />
         </View>
         <View style={[styles.buttonView]}> 
           <Button 
           title="CHANGE DIRECTION"
-          onPress={() => console.log("CHANGE DIRECTION")}
+          onPress={() => changeSetting(directionIndex, directions, setDirection)}
           />
         </View>
         <View style={[styles.buttonView]}>
           <Button 
           title="CHANGE FLEX WRAP"
-          onPress={() => console.log("CHANGE FLEX WRAP")}/>
+          onPress={() => changeSetting(wrapIndex, wraps, setWrap)}/>
         </View>
         <View style={[styles.buttonView]}>
           <Button 
