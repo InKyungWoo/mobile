@@ -3,7 +3,7 @@ import { Text, Button, Image, View, StyleSheet, TouchableOpacity } from 'react-n
 
 function Home ( {navigation} ) {
   return (  // 기존<> 에서 <View>로 바꾸면 스타일 적용 가능!
-    <>    
+    <View style={styles.container}>    
       <Text> Hello Home </Text>
       <Image
         source={require('../assets/frog-1371919.png')}    // 개구리 이미지 삽입
@@ -20,11 +20,17 @@ function Home ( {navigation} ) {
         title = "Go to Layout"
         onPress={() => navigation.navigate('Layout')}
         />
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    justifyContent:'center',    // 개구리 중앙 정렬
+    alignItems:'center',        // 버튼 중앙 정렬
+    backgroundColor:'#ebebeb'   // 바탕색 옅은 회색
+  },
   buttonContainer:{
     backgroundColor:'black',
     borderRadius:5,
