@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Button, View, ScrollView, StyleSheet, Text, Image, ImageBackground } from "react-native"; //view, scrollview, stylesheet 쓸거임
 import Constants from 'expo-constants';
 
-
-const Layout = () => {
+// props로 전달 받아서 navigation!!
+const Layout = (props) => {
+  const {navigation} = props;     
   
   // initialize state and call setState to change
   const flexDirectionsArray = ['row', 'row-reverse', 'column', 'column-reverse'];
@@ -105,6 +106,11 @@ const Layout = () => {
         <Button 
           title="DELETE SQUARE" 
             onPress={() => setSquares(squares.filter((v, i) => i != squares.length-1))}/>
+        </View>
+        <View style={[styles.buttonView]}>
+        <Button 
+          title="GO TO HOME"          // 홈으로 이동 버튼 추가
+            onPress={() => navigation.navigate('Home')}/>
         </View>
       </View>
     </ScrollView>
