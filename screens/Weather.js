@@ -3,6 +3,7 @@ import { Text, Alert, StyleSheet, View } from "react-native";
 import * as Location from 'expo-location';
 
 import { REACT_APP_WEATHER_KEY } from "@env";
+import axios from "axios";
 
 export default class Weather extends React.Component {
 
