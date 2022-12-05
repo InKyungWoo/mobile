@@ -6,7 +6,7 @@ function Home ( {navigation} ) {
     <View style={styles.container}>    
       <Text> Hello Home </Text>
       <Image
-        source={require('../assets/frog-1371919.png')}    // 개구리 이미지 삽입
+        source={require('../assets/IMG_5373.jpg')}    // 개구리 이미지 삽입
         style={{width:400, height:400}}
       />
 
