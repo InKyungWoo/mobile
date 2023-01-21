@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, View, ScrollView, StyleSheet, Text, Image, ImageBackground } from "react-native"; //view, scrollview, stylesheet 쓸거임
+import { Button, View, ScrollView, StyleSheet, Text, Image, ImageBackground, StatusBar } from "react-native"; //view, scrollview, stylesheet 쓸거임
 import Constants from 'expo-constants';
 
 // props로 전달 받아서 navigation!!
@@ -73,44 +73,56 @@ const Layout = (props) => {
             title="CHANGE FLEX DIRECTION"
             onPress={() => changeSetting(flexDirectionIndex, flexDirectionsArray, setFlexDirection)}
           />
+          <Text style={styles.text}>{flexDirectionsArray[flexDirectionIndex]}</Text>
         </View >
         <View style={[styles.buttonView]}>
           <Button 
             title="CHANGE JUSTIFY CONTENT"
             onPress={() => changeSetting(justifyContentIndex, justifyContents, setJustifyContent)}
           />
+          <Text style={styles.text}>{justifyContents[justifyContentIndex]}</Text>
         </View>
         <View style={[styles.buttonView]}>
           <Button 
             title="CHANGE ALIGN ITEMS"
             onPress={() => changeSetting(alignItemIndex, alignItems, setAlignItem)}
           />
+          <Text style={styles.text}>{alignItems[alignItemIndex]}</Text>
         </View>
         <View style={[styles.buttonView]}> 
           <Button 
-          title="CHANGE DIRECTION"
-          onPress={() => changeSetting(directionIndex, directions, setDirection)}
+            title="CHANGE DIRECTION"
+            onPress={() => changeSetting(directionIndex, directions, setDirection)}
           />
+          <Text style={styles.text}>{directions[directionIndex]}</Text>
         </View>
         <View style={[styles.buttonView]}>
           <Button 
-          title="CHANGE FLEX WRAP"
-          onPress={() => changeSetting(wrapIndex, wraps, setWrap)}/>
+            title="CHANGE FLEX WRAP"
+            onPress={() => changeSetting(wrapIndex, wraps, setWrap)}
+          />
+          <Text style={styles.text}>{wraps[wrapIndex]}</Text>
         </View>
         <View style={[styles.buttonView]}>
           <Button 
-          title="ADD SQURE"
-          onPress={() => setSquares([...squares, Square()])}/>
+            title="ADD SQURE"
+            onPress={() => setSquares([...squares, Square()])}
+          />
+          <Text style={styles.text}>박스 추가</Text>
         </View>
         <View style={[styles.buttonView]}>
-        <Button 
-          title="DELETE SQUARE" 
-            onPress={() => setSquares(squares.filter((v, i) => i != squares.length-1))}/>
+          <Button 
+            title="DELETE SQUARE" 
+            onPress={() => setSquares(squares.filter((v, i) => i != squares.length-1))}
+          />
+          <Text style={styles.text}>박스 삭제</Text>
         </View>
         <View style={[styles.buttonView]}>
-        <Button 
-          title="GO TO HOME"          // 홈으로 이동 버튼 추가
-            onPress={() => navigation.navigate('Home')}/>
+          <Button 
+            title="GO TO HOME"          // 홈으로 이동 버튼 추가
+            onPress={() => navigation.navigate('Home')}
+          />
+        <Text style={styles.text}>홈으로 이동</Text>
         </View>
       </View>
     </ScrollView>
@@ -120,7 +132,7 @@ const Layout = (props) => {
 
 const styles = StyleSheet.create({  //여기에 스타일 만들고 위에 view에 연결해줘야함
   container: {
-    height:'50%' //높이 반반으로
+    height:'40%' //높이 반반으로 -> 40% 로 조정
   },
   playingSpace:{
     backgroundColor: 'white',
@@ -135,7 +147,8 @@ const styles = StyleSheet.create({  //여기에 스타일 만들고 위에 view�
   buttonView: {
     width: '50%',
     padding: 10
-  }
+  },
+  text : { textAlign: 'center'}    // 텍스트 가운데 정렬
 });
 
 const randomHexColor = () => {

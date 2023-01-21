@@ -19,8 +19,25 @@ const weatherOptions = {        // weatherOption 만들고 밑에서 갖다 쓸 
   },
   Snow : {
     iconName : "snowflake-8"
+  },
+  Fog : {
+    iconName : "weather-fog"
+  }, 
+  Thunderstorm : {
+    iconName : "thunderstorm-outline"
+  },
+  Drizzle : {
+    iconName : "cloud-drizzle"
+  },
+  Smoke : {
+    iconName : "smoke"
+  },
+  Haze : {
+    iconName : "weather-hazy"
+  },
+  Tornado : {
+    iconName : "weather-tornado"
   }
-
 
 }
 
@@ -32,7 +49,7 @@ export default class Weather extends React.Component {
 
   getWeather = async (latitude, longitude) => {
     try {
-        const {data} = await axios.get(   
+        const {data} = await axios.get(
             `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${REACT_APP_WEATHER_KEY}&units=metric`    // 단위 바꾸기
         );
         console.log(data);        // data 가져옴
@@ -69,7 +86,7 @@ export default class Weather extends React.Component {
     }
   };
 
-  componentDidMount() {   // 마운트 될 때 getLocation 호출 -> getWeather -> 
+  componentDidMount() {   // 마운트 될 때 getLocation 호출
     this.getLocation();
   }
 
@@ -79,8 +96,9 @@ export default class Weather extends React.Component {
     return (
       <View style={[styles.container]}>
         <View style={[styles.halfcontainer]}>
+          <Text style={styles.text}>오늘 날씨는</Text>
           <MaterialCommunityIcons name={weatherOptions[cond].iconName} size={128} color="blue" />
-          <Text style={styles.temptitle}> {temp} </Text>
+          <Text style={styles.temptitle}> {temp} {"\n"} </Text>
           <Text> {cond} </Text>
         </View>
       </View>
@@ -102,5 +120,9 @@ const styles = StyleSheet.create({
   },
   temptitle: {
       fontSize: 24,
+  },
+  text: {
+    marginBottom:30,
+    fontSize:20
   }
 });

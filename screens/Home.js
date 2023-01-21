@@ -1,12 +1,19 @@
 import React from "react";
-import { Text, Button, Image, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, Button, Image, View, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { Share } from "react-native";
+
 
 function Home ( {navigation} ) {
+
+  const link = () => {
+    Linking.openURL("https://velog.io/@chacha_w/12.-%EA%B8%B0%EB%A7%90-%EA%B3%BC%EC%A0%9C")
+  }
+
   return (  // 기존<> 에서 <View>로 바꾸면 스타일 적용 가능!
     <View style={styles.container}>    
-      <Text> Hello Home </Text>
+      <Text style={{fontSize:17, padding:5, color:'#393026'}}> 🌸 저희집 고냥이 봄이입니다 🌸 </Text>
       <Image
-        source={require('../assets/IMG_5373.jpg')}    // 개구리 이미지 삽입
+        source={require('../assets/IMG_5373.jpg')}        // 귀여운 봄이 사진으로 변경
         style={{width:400, height:400}}
       />
 
@@ -16,6 +23,13 @@ function Home ( {navigation} ) {
       >
         <Text style={styles.buttonTest}>Go To Layout</Text>     
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.buttonContainer}                    // 누르면 velog로 이동하는 버튼 만들기
+        onPress={() => link()}     
+      >
+        <Text style={styles.buttonTest}>Go to Inkyung's velog</Text>     
+      </TouchableOpacity>
     </View>
   );
 }
@@ -23,18 +37,18 @@ function Home ( {navigation} ) {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    justifyContent:'center',    // 개구리 중앙 정렬
+    justifyContent:'center',    // 사진 중앙 정렬
     alignItems:'center',        // 버튼 중앙 정렬
-    backgroundColor:'#ebebeb'   // 바탕색 옅은 회색
+    backgroundColor:'#c3beb8'   // 바탕색 옅은 베이지로 변경
   },
   buttonContainer:{
-    backgroundColor:'black',
+    backgroundColor:'#49544c',
     borderRadius:5,
     padding:10,
     margin:20
   },
   buttonTest:{
-    fontSize:20,
+    fontSize: 18,
     color:'#fff'
   }
 })
