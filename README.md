@@ -4,6 +4,10 @@
 
 > GBT학부 201904385 우인경
 
+fork가 막혀 있어서 새로 판 레포 😎
+
+### `npx expo start`로 같은 네트워크에서 실행하기!!
+
 <br>
 ✏️ 강의노트 블로그 주소
 
@@ -48,4 +52,5 @@ npm i react-native-youtube-iframe
 npm install --save react-native-calendars
 npm install date-fns
 ```
+
 
